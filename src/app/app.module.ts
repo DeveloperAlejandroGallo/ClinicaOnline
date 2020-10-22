@@ -12,19 +12,23 @@ import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { FireAuthService } from './service/fire-auth.service';
 import { FireStoreService } from './service/fire-store.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { ErrorComponent } from './component/error/error.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegistryComponent,
-    HomeComponent
+    HomeComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
     FormsModule,
     ReactiveFormsModule
   ],

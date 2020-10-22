@@ -1,1 +1,59 @@
-<p>registry works!</p>
+<div class="card">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="../../../assets/images/health-login.jpg" class="card-img" alt="login">
+        </div>
+        <div class="col-md-8">
+            <div class="card text-center">
+                <div class="card-body">
+                    <div class="card-header text-white bg-info">Alta de Usuario</div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <label class="input-group-text" for="userProfile">Tipo de Usuario</label>
+                        </div>
+                        <select class="custom-select" id="userProfile">
+                          <option selected>Seleccione un tipo de usuario</option>
+                          <option value="Paciente">Paciente</option>
+                          <option value="Profesional">Profesional</option>
+                          <option value="Administrador">Administrador</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Nombre</span>
+                        </div>
+                        <input type="text" class="form-control" [(ngModel)]="user.name" placeholder="Nombre completo"
+                            aria-label="Usuario" aria-describedby="basic-addon1">
+                    </div>                    
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Usuario</span>
+                        </div>
+                        <input type="email" class="form-control" [(ngModel)]="user.email" placeholder="Usuario"
+                            aria-label="Usuario" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Clave</span>
+                        </div>
+                        <input type="password" class="form-control" [(ngModel)]="user.pass" placeholder="Clave" aria-label="Clave" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="inputGroupFileAddon01">Imagen</span>
+                        </div>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" [(ngModel)]="user.image" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                          <label class="custom-file-label" style="text-align: left;" for="inputGroupFile01">Elija un archivo</label>
+                        </div>
+                      </div>
+                    <button type="button" class="btn btn-info" (click)="register()" shape="round" size="medium">Registrarse</button>
+                    <button type="button" class="btn btn-info" (click)="back()" shape="round" size="medium">Volver</button>
+                    <div>
+                        <label>{{msj}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

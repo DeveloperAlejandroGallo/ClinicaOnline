@@ -21,15 +21,16 @@ export class LoginComponent implements OnInit {
   }
   save(event): void
   {
-    this.btnIngresar_Click();
+    this.btnLogin();
   }
 
   public register(){
+    console.log('Click on registry');
     this.router.navigate(['/registry']);
   }
 
 
-  public btnIngresar_Click(): void
+  public btnLogin(): void
   {
     // this.user.email = (document.getElementById('txtUsuario') as HTMLInputElement).value;
     // this.user.pass = (document.getElementById('txtpass') as HTMLInputElement).value;
@@ -42,7 +43,7 @@ export class LoginComponent implements OnInit {
         .signIn(this.user)
         .then((resp) => {
           this.msj = 'Bienvenido';
-          this.router.navigate(['/home']);
+          this.router.navigate(['/home'])
         })
         .catch((error) => {
           console.log(error.code);
@@ -62,7 +63,7 @@ export class LoginComponent implements OnInit {
           }
         });
     } else {
-      this.msj = 'Por favor ingrese una user.pass';
+      this.msj = 'Por favor ingrese una clave';
     }
   }
 }
