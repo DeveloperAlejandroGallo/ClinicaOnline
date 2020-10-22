@@ -1,1 +1,19 @@
-<p>login works!</p>
+<div class="img-login" id="container">
+    <div class="align-divs-center">
+        <label>Correo: </label>
+        <input type="text" placeholder="Ingrese Correo" [(ngModel)]="user.email"/>
+    </div>
+    <div class="align-divs-center">
+        <label>Clave: </label>
+        <input type="password" placeholder="Ingrese Clave" [(ngModel)]="user.pass" (keydown.enter)="save($event)"/>
+    </div>
+    <div class="align-divs-center">
+        <button type="button" class="btn btn-info" (click)="btnIngresar_Click()" shape="round" size="medium">Ingresar</button>
+    <!-- </div>
+    <div class="align-divs-center"> -->
+        <button type="button" class="btn btn-info" (click)="register()" shape="round" size="medium">Registrar</button>
+    </div>
+    <div>
+        <label>{{msj}}</label>
+    </div>
+</div>

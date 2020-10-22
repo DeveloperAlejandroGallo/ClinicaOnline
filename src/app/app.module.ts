@@ -9,6 +9,9 @@ import { HomeComponent } from './component/home/home.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { AngularFireDatabaseModule } from "@angular/fire/database";
+import { FireAuthService } from './service/fire-auth.service';
+import { FireStoreService } from './service/fire-store.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,9 +24,11 @@ import { AngularFireDatabaseModule } from "@angular/fire/database";
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [FireAuthService, FireStoreService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
