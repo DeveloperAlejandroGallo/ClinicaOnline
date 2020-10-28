@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFireStorage} from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FireStoreService {
 
-   constructor(private fireStore: AngularFirestore) { }
-  readonly collectionName = 'usuarios';
-  GetUsuarios()
-  {
-    return this.fireStore.collection(this.collectionName).snapshotChanges();
-  }
+   constructor(private storage: AngularFireStorage) { }
+
+    public uploadFile(fileName: string, data: any,meta:any) {
+      return this.storage.upload(fileName, data, {customMetadata:meta});
+    }
+  
+    public linkToPublicFile(fileName: string) {
+      return this.storage.ref(fileName);
+    }
+
 
 }

@@ -13,7 +13,8 @@ export const environment = {
     messagingSenderId: "123848916721",
     appId: "1:123848916721:web:c896cbf4f0564c9fc3f350"
   },
-  urlVerify:"http://localhost:4200/"
+  // urlVerify:"http://localhost:4200/"
+  urlVerify: "https://clinica-online-fb9aa.web.app"
 };
 
 /*

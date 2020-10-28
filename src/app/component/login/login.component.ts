@@ -29,6 +29,23 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/registry']);
   }
 
+  public adminLogin(){
+    this.user.email = 'admin@admin.com';
+    this.user.pass = 'administrator';
+  
+  }
+
+  public profesionalLogin(){
+    this.user.email = 'profesional@profesional.com';
+    this.user.pass = 'profesional';
+
+  }
+
+  public patientLogin(){
+    this.user.email = 'patient@patient.com';
+    this.user.pass = 'patient';
+
+  }
 
   public btnLogin(): void
   {
@@ -42,6 +59,7 @@ export class LoginComponent implements OnInit {
       this.authService
         .signIn(this.user)
         .then((resp) => {
+          
           this.msj = 'Bienvenido';
           this.router.navigate(['/home'])
         })
@@ -56,7 +74,7 @@ export class LoginComponent implements OnInit {
               break;
             case 'auth/user-not-found':
               this.msj = 'El usuario no existe.';
-              this.register();
+              // this.register();
               break;
             default:
               this.msj = error.message;
