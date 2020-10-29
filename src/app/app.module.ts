@@ -17,7 +17,12 @@ import { ErrorComponent } from './component/error/error.component';
 import { RecaptchaModule } from "angular-google-recaptcha";
 import { HttpClientModule } from '@angular/common/http';
 import { UploadFileComponent } from './component/upload-file/upload-file.component';
-
+import { PatientMenuComponent } from './component/patient/patient-menu/patient-menu.component';
+import { ProfesionalMenuComponent } from './component/profesional/profesional-menu/profesional-menu.component';
+import { AdminMenuComponent } from './component/admin/admin-menu/admin-menu.component';
+import { UserProfileComponent } from './component/user-profile/user-profile.component';
+import { AppointmentComponent } from './component/patient/appointment/appointment.component';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -26,7 +31,12 @@ import { UploadFileComponent } from './component/upload-file/upload-file.compone
     RegistryComponent,
     HomeComponent,
     ErrorComponent,
-    UploadFileComponent
+    UploadFileComponent,
+    PatientMenuComponent,
+    ProfesionalMenuComponent,
+    AdminMenuComponent,
+    UserProfileComponent,
+    AppointmentComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +47,8 @@ import { UploadFileComponent } from './component/upload-file/upload-file.compone
     FormsModule,
     ReactiveFormsModule,
     RecaptchaModule.forRoot({siteKey:'6Lc9StwZAAAAAMj-93mWyO2jCbshJu9lsxxNJN8d'}),
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [FireAuthService, FireStoreService],
   bootstrap: [AppComponent]

@@ -20,16 +20,16 @@
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Usuario</span>
+                            <span class="input-group-text" id="basic-addon1">email</span>
                         </div>
-                        <input type="email" class="form-control" [(ngModel)]="user.email" placeholder="Usuario"
+                        <input type="email" class="form-control" [(ngModel)]="email" placeholder="Ingrese su email"
                             aria-label="Usuario" aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">Clave</span>
                         </div>
-                        <input type="password" class="form-control" [(ngModel)]="user.pass" placeholder="Clave" aria-label="Clave" aria-describedby="basic-addon1">
+                        <input type="password" class="form-control" [(ngModel)]="pass" placeholder="Ingrese su clave" aria-label="Clave" aria-describedby="basic-addon1">
                     </div>
                     <button type="button" class="btn btn-info" (click)="btnLogin()" shape="round" size="medium">Ingresar</button>
                     <button type="button" class="btn btn-info" (click)="register()" shape="round" size="medium">Registrarse</button>
@@ -40,7 +40,7 @@
                         <button type="button" class="btn btn-info" (click)="patientLogin()" shape="round" size="medium">Paciente</button>
                     </div>
                     <div>
-                        <label>{{msj}}</label>
+                        <label>{{msg}}</label>
                     </div>
                 </div>
             </div>

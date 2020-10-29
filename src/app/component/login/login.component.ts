@@ -14,8 +14,10 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
               private authService: FireAuthService,
               private fireStore: FireStoreService) { }
-  user = new User();
-  msj: string;
+  // user = new User();
+  msg: string;
+  email: string;
+  pass: string;
 
   ngOnInit(): void {
   }
@@ -30,58 +32,58 @@ export class LoginComponent implements OnInit {
   }
 
   public adminLogin(){
-    this.user.email = 'admin@admin.com';
-    this.user.pass = 'administrator';
+    this.email = 'admin@admin.com';
+    this.pass = 'administrador';
   
   }
 
   public profesionalLogin(){
-    this.user.email = 'profesional@profesional.com';
-    this.user.pass = 'profesional';
+    this.email = 'profesional@profesional.com';
+    this.pass = 'profesional';
 
   }
 
   public patientLogin(){
-    this.user.email = 'patient@patient.com';
-    this.user.pass = 'patient';
+    this.email = 'paciente@paciente.com';
+    this.pass = 'paciente';
 
   }
 
   public btnLogin(): void
   {
-    // this.user.email = (document.getElementById('txtUsuario') as HTMLInputElement).value;
-    // this.user.pass = (document.getElementById('txtpass') as HTMLInputElement).value;
+    // this.email = (document.getElementById('txtUsuario') as HTMLInputElement).value;
+    // this.pass = (document.getElementById('txtpass') as HTMLInputElement).value;
 
-    console.log(this.user.email );
-    console.log(this.user.pass );
+    console.log(this.email );
+    console.log(this.pass );
 
-    if (this.user.pass !== '' && this.user.pass !== undefined) {
+    if (this.pass !== '' && this.pass !== undefined) {
       this.authService
-        .signIn(this.user)
+        .signIn(this.email, this.pass)
         .then((resp) => {
           
-          this.msj = 'Bienvenido';
+          this.msg = 'Bienvenido';
           this.router.navigate(['/home'])
         })
         .catch((error) => {
           console.log(error.code);
           switch (error.code) {
             case 'auth/invalid-email':
-              this.msj = 'Correo con formato incorrecto';
+              this.msg = 'Correo con formato incorrecto';
               break;
             case 'auth/wrong-password':
-              this.msj = 'Clave incorrecta';
+              this.msg = 'Clave incorrecta';
               break;
             case 'auth/user-not-found':
-              this.msj = 'El usuario no existe.';
+              this.msg = 'El usuario no existe.';
               // this.register();
               break;
             default:
-              this.msj = error.message;
+              this.msg = error.message;
           }
         });
     } else {
-      this.msj = 'Por favor ingrese una clave';
+      this.msg = 'Por favor ingrese una clave';
     }
   }
 }

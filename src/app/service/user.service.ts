@@ -16,11 +16,11 @@ export class UserService {
 
   constructor(private fireUsers:AngularFireDatabase, private http:HttpClient) {
     
-    this.userList= fireUsers.object('usuarios').valueChanges().pipe(map(datos=>{return this.objecToArray(datos)}));
+    this.userList= this.fireUsers.object('usuarios').valueChanges().pipe(map(datos=>{return this.objecToArray(datos)}));
 
    }
 
-   altaUsuario(user:User){
+   createUser(user:User){
      
      return this.http.post(environment.firebase.databaseURL+"/usuarios.json",user);
      
@@ -81,12 +81,12 @@ public filterById(res: any, id: string) {
 
 public filterByProfile(res: any, profile: string) {
   let usuarios;
-  let aux=null;
+  let aux=[];
   usuarios=this.objecToArray(res);
     for (let index = 0; index < usuarios.length; index++) {
       const element = usuarios[index];
       if (element.profile == profile) {
-        aux = element;
+        aux.push(element);
       }
     }
     return aux;

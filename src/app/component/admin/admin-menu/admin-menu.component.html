@@ -1,0 +1,21 @@
+<div class="card">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="../../../assets/images/health-login.jpg" class="card-img" alt="login">
+        </div>
+        <div class="col-md-8">
+            <div class="card text-center">
+                <div class="card-body">
+                    <div class="card-header text-white bg-info">Administrador</div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" [(ngModel)]="newSpeciality" class="form-control" placeholder="Nueva Especialidad" aria-label="Nueva Especialidad" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" type="button" id="button-addon2"  (click)="save()">Guardar</button>
+                    </div>
+                  </div>
+                <div><label>{{msg}}</label></div>
+            </div>
+        </div>
+    </div>
+</div>

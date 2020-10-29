@@ -4,15 +4,14 @@ import { FireAuthService } from 'src/app/service/fire-auth.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-user-profile',
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile.component.scss']
 })
-export class HomeComponent implements OnInit {
-
+export class UserProfileComponent implements OnInit {
   constructor(private router: Router,
-              private fireAuth: FireAuthService,
-              private userService: UserService) { }
+    private fireAuth: FireAuthService,
+    private userService: UserService) { }
 
   msg: string;
   activeUser;
@@ -41,21 +40,6 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  public goToProfile()
-  {
-    switch(this.profile)
-    {
-      case 'Paciente':
-        this.router.navigate(['/patient']);
-        break;
-      case 'Administrador':
-        this.router.navigate(['/admin']);
-        break;
-      case 'Profesional':
-        this.router.navigate(['/profesional']);
-        break;
-      
-    }
-  }
+  
 
 }

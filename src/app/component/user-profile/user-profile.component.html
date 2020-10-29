@@ -1,0 +1,22 @@
+<div class="card-header text-white bg-info">
+    <h6>{{profile}}: {{name}} ({{email}})
+    <button type="button" class="btn btn-secondary">Mi Perfil</button>
+    <button type="button" class="btn btn-warning" (click)="back()" shape="round" size="medium">Salir</button></h6>
+</div>
+<div class="card text-center">
+    <!-- <div class="card-header">{{profile}}</div> -->
+<div [ngSwitch]="profile">
+    <div *ngSwitchCase="'Paciente'">
+        <app-patient-menu></app-patient-menu>
+    </div>
+    <div *ngSwitchCase="'Profesional'">
+        <app-profesional-menu></app-profesional-menu>
+    </div>
+    <div *ngSwitchCase="'Administrador'">
+        <app-admin-menu></app-admin-menu>
+    </div>
+    <!-- <div *ngSwitchDefault>output2</div> -->
+</div>
+</div>
+
+

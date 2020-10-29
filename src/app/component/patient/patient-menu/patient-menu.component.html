@@ -1,0 +1,11 @@
+<div class="card-header text-white bg-info">
+    <h6>{{profile}}: {{name}} ({{email}})
+        <button type="button" class="btn btn-warning" (click)="menuSelector('turno')" shape="round" size="medium">Turno</button>
+        <button type="button" class="btn btn-warning" (click)="menuSelector('datos')" shape="round" size="medium">Datos</button>
+        <button type="button" class="btn btn-warning" (click)="back()" shape="round" size="medium">Volver</button></h6>
+</div>
+<div class="card">
+    <div *ngIf="menu==1">
+        <app-appointment></app-appointment>
+    </div>
+</div>

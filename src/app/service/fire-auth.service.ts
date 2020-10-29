@@ -11,8 +11,8 @@ export class FireAuthService {
   constructor(private fireAuth: AngularFireAuth,
               private router: Router) { }
 
-  public async signIn(user: User) {
-    return this.fireAuth.signInWithEmailAndPassword(user.email, user.pass);
+  public async signIn(email: string, pass: string) {
+    return this.fireAuth.signInWithEmailAndPassword(email, pass);
   }
 
   public async signOut() {
@@ -20,8 +20,8 @@ export class FireAuthService {
       this.router.navigate(['/']);
   }
 
-  public async register(user: User) {
-    return this.fireAuth.createUserWithEmailAndPassword(user.email, user.pass);
+  public async register(email: string, pass: string) {
+    return this.fireAuth.createUserWithEmailAndPassword(email, pass);
   }       
   
   closeSesion(){
