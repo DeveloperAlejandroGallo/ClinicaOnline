@@ -14,6 +14,10 @@ import { FireStoreService } from './service/fire-store.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { ErrorComponent } from './component/error/error.component';
+import { RecaptchaModule } from "angular-google-recaptcha";
+import { HttpClientModule } from '@angular/common/http';
+import { UploadFileComponent } from './component/upload-file/upload-file.component';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +25,8 @@ import { ErrorComponent } from './component/error/error.component';
     LoginComponent,
     RegistryComponent,
     HomeComponent,
-    ErrorComponent
+    ErrorComponent,
+    UploadFileComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,9 @@ import { ErrorComponent } from './component/error/error.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RecaptchaModule.forRoot({siteKey:'6Lc9StwZAAAAAMj-93mWyO2jCbshJu9lsxxNJN8d'}),
+    HttpClientModule
   ],
   providers: [FireAuthService, FireStoreService],
   bootstrap: [AppComponent]

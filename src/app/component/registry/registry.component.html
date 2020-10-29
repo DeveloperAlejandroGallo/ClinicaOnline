@@ -41,7 +41,13 @@
                         </div>
                         <input type="password" class="form-control" [(ngModel)]="user.pass" placeholder="Clave" aria-label="Clave" aria-describedby="basic-addon1">
                       </div>
-                      <div class="input-group mb-3">
+                      <div class="input-group mb-3" *ngIf="user.profile == 'Profesional'">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon1">Matr&iacute;cula Medica</span>
+                        </div>
+                        <input type="text" class="form-control" [(ngModel)]="user.mdLicence" placeholder="Matr&iacute;cula Medica" aria-label="Clave" aria-describedby="basic-addon1">
+                      </div>
+                      <!-- <div class="input-group mb-3">
                         <div class="input-group-prepend">
                           <label class="input-group-text" for="inputGroupSelect01">Avatar 1</label>
                         </div>
@@ -56,7 +62,7 @@
                           <option value="../../../assets/images/icons/avatar_male4.png">Hombre 4</option>
                         </select>
                       </div>
-                      <div class="input-group mb-3">
+                      <div *ngIf="user.profile == 'Profesional'" class="input-group mb-3">
                         <div class="input-group-prepend">
                           <label class="input-group-text" for="inputGroupSelect01">Avatar 2</label>
                         </div>
@@ -70,12 +76,21 @@
                           <option value="../../../assets/images/icons/avatar_male3.png">Hombre 3</option>
                           <option value="../../../assets/images/icons/avatar_male4.png">Hombre 4</option>
                         </select>
-                      </div>
+                      </div> -->
+                      <h5>Imágenes</h5>
                       <div class="row">
-                        <img class="avatar" src='{{user.image1}}' alt="img1" >
-                        <img class="avatar" src='{{user.image2}}' alt="img2" >
+                        <div class="col-md-6">
+                          <app-upload-file (detalleImagen)="imgUpload1($event)"></app-upload-file>
+                        </div>
+                        <div class="col-md-6" *ngIf="user.profile == 'Profesional'">
+                          <app-upload-file (detalleImagen)="imgUpload2($event)"></app-upload-file>
+                        </div>
                       </div>
-                      <hr>Im&aacute;genes disponibles
+                      <!-- <div class="row">
+                        <img *ngIf="user.image1 != ''" class="avatar" src='{{user.image1}}' alt="img1" >
+                        <img *ngIf="user.profile == 'Profesional' && user.image1 != ''" class="avatar" src='{{user.image2}}' alt="img2" >
+                      </div> -->
+                      <!-- <hr>Im&aacute;genes disponibles
                       <div class="row mx-auto">
                         <img class="avatar" src="../../../assets/images/icons/avatar_female1.png" alt="Female1" (click)="assignImg('avatar_female1')">
                         <img class="avatar" src="../../../assets/images/icons/avatar_female2.png" alt="Female2" (click)="assignImg('avatar_female2')">
@@ -85,10 +100,10 @@
                         <img class="avatar" src="../../../assets/images/icons/avatar_male2.png"   alt="Male2"   (click)="assignImg('avatar_male2')">
                         <img class="avatar" src="../../../assets/images/icons/avatar_male3.png"   alt="Male3"   (click)="assignImg('avatar_male3')">
                         <img class="avatar" src="../../../assets/images/icons/avatar_male4.png"   alt="Male3"   (click)="assignImg('avatar_male4')">
-                      </div>
+                      </div> -->
                       <hr>
                       <!-- <div class="mx-auto"> -->
-                        <recaptcha formControlName="recaptchaReactive"
+                        <recaptcha 
                           [(ngModel)]="myRecaptcha"
                           (scriptLoad)="onScriptLoad()"
                           (scriptError)="onScriptError()"

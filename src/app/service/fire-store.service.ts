@@ -13,6 +13,7 @@ export class FireStoreService {
     }
   
     public linkToPublicFile(fileName: string) {
+      console.log('filename:' + fileName);
       return this.storage.ref(fileName);
     }
 

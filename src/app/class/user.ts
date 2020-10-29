@@ -13,4 +13,5 @@ export class User {
     specialities: Speciality[]; 
     days: string[];
     state: boolean;
+    mdLicence: string;
 }

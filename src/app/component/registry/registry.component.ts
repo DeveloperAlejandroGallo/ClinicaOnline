@@ -46,24 +46,55 @@ export class RegistryComponent implements OnInit {
   ngOnInit(): void {
     this.user = new User();
     console.log('Ingreso a registry');
-    this.user.image1 = '../../../assets/images/icons/avatar_female1.png';
-    this.user.image2 = '../../../assets/images/icons/avatar_male1.png';
+    // this.user.image1 = '../../../assets/images/icons/avatar_female1.png';
+    // this.user.image2 = '../../../assets/images/icons/avatar_male1.png';
 
     this.user.profile = "Paciente";
 
-    this.fireAuth.currentUser().then(resp => {
+    // this.fireAuth.currentUser().then(resp => {
 
-    this.usuarioActivo = resp;
+    // this.usuarioActivo = resp;
 
-    this.userService.getUsersByEmail(this.usuarioActivo.email).subscribe(res => {
-      if (res.tipoDeUsuario == "Administrador")
-        this.adminActivo = true;
-      });
-    });
+    // this.userService.getUsersByEmail(this.usuarioActivo.email).subscribe(res => {
+    //   if (res.tipoDeUsuario == "Administrador")
+    //     this.adminActivo = true;
+    //   });
+    // });
   }
+
+  private incompleteFields()
+  {
+
+    if (this.user.profile == ('' || undefined)) {
+      this.msj = 'Debe seleccionar un tipo de usuario.'
+      return true;
+    }
+    if (this.user.name == ('' || undefined)) {
+      this.msj = 'Por favor ingrese su nombre completo.'
+      return true;
+    }
+    if (this.user.email == ('' || undefined)) {
+      this.msj = 'Porf favor ingrese un correo v\u00E1lido.'
+      return true;
+    }
+    if (this.user.pass == ('' || undefined) || this.user.pass.length < 6) {
+      this.msj = 'Debe ingresar una clave de 6 digitos.'
+      return true;
+    }
+    // if (!this.myRecaptcha) {
+    //   this.msj = 'Debe validar el Captcha.'
+    //   return true;
+    // }
+
+    return false;
+  }
+
 
   public register() {
     // this.fireAuth.register(this.user);
+
+    if (this.incompleteFields())
+      return;
 
     this.fireAuth.register(this.user).then(res => {
       console.log(res);
@@ -88,6 +119,12 @@ export class RegistryComponent implements OnInit {
             this.msj = 'Correo con formato inv\u00E1lido';
             break;
           case 'auth/argument-error':
+            if (error.message == 'createUserWithEmailAndPassword failed: First argument "email" must be a valid string.')
+              this.msj = 'Correo con debe ser una cadena v\u00E1lida';
+            else
+              this.msj = 'La constrase\u00F1a debe ser una cadena v\u00E1lida';
+            break;
+          case 'auth/argument-error':
             this.msj = 'Correo con debe ser una cadena v\u00E1lida';
             break;
           default:
@@ -100,10 +137,11 @@ export class RegistryComponent implements OnInit {
 
     let userMetaData = {
       nombre: this.user.name,
-      email: this.user.email
+      email: this.user.email,
+      perfil: this.user.profile
     };
 
-    this.fireStorage.uploadFile(this.user.email + "_1", this.img1,userMetaData).then(resp => {
+    this.fireStorage.uploadFile(this.user.email + "_1", this.user.image1,userMetaData).then(resp => {
       refImg1 = this.fireStorage.linkToPublicFile(this.user.email + "_1");
       console.log("refImg1" + refImg1);
       refImg1.getDownloadURL().subscribe((URL) => {
@@ -112,13 +150,13 @@ export class RegistryComponent implements OnInit {
       });
     }).catch(error => {console.log("Error al subir img " + error)});
 
-    this.fireStorage.uploadFile(this.user.email + "_2", this.img1,userMetaData).then(resp => {
-      refImg2 = this.fireStorage.linkToPublicFile(this.user.email + "_2");
-      refImg2.getDownloadURL().subscribe((URL) => {
-        console.log("link publico 2" + URL);
-        this.publicURL1 = URL;
-      });
-    });
+    // this.fireStorage.uploadFile(this.user.email + "_2", this.img1,userMetaData).then(resp => {
+    //   refImg2 = this.fireStorage.linkToPublicFile(this.user.email + "_2");
+    //   refImg2.getDownloadURL().subscribe((URL) => {
+    //     console.log("link publico 2" + URL);
+    //     this.publicURL1 = URL;
+    //   });
+    // });
 
 
 
@@ -133,6 +171,13 @@ export class RegistryComponent implements OnInit {
   
   }
 
+  imgUpload1(img) {
+    this.user.image1 = img;
+  }
+
+  imgUpload2(img) {
+    this.user.image2 = img;
+  }
 
 
 }
