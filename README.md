@@ -1,7 +1,7 @@
 # **Clinica Online**
 
 Proyecto creado con [Angular CLI](https://github.com/angular/angular-cli) version 10.1.0.
-Como Trabajo Práctico final de la materia Laboratorio de Programación IV de la carrera Técnico Superiror en Programación en la Universidad Tecnológica Nacional - Regional Avellanera
+Como Trabajo Práctico final de la materia Laboratorio de Programación IV de la carrera ***Técnico Superiror en Programación en la Universidad Tecnológica Nacional - Regional Avellanera*** [FRA Tecnicaturas](http://www.sistemas-utnfra.com.ar/#/home)
 
 ## Base de Datos
 
