@@ -1,124 +1,95 @@
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 <body>
 
   <div class="card">
     <div class="row no-gutters">
       <div class="col-md-4">
-            <img src="../../../assets/images/health-login.jpg" class="card-img" alt="login">
-          </div>
-          <div class="col-md-8">
-            <div class="card text-center">
-                <div class="card-body">
-                  <div class="card-header text-white bg-info">Alta de Usuario</div>
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <label class="input-group-text" for="userProfile">Tipo de Usuario</label>
-                    </div>
-                    <select class="custom-select" id="userProfile" [(ngModel)]="profile">
-                      <option selected>Seleccione un tipo de usuario</option>
-                      <option value="Paciente">Paciente</option>
-                      <option value="Profesional">Profesional</option>
-                      <option value="Administrador">Administrador</option>
-                    </select>
-                  </div>
-                    <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">Nombre</span>
-                      </div>
-                      <input type="text" class="form-control" [(ngModel)]="name" placeholder="Nombre completo"
-                      aria-label="Usuario" aria-describedby="basic-addon1">
-                    </div>                    
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Usuario</span>
-                        </div>
-                        <input type="email" class="form-control" [(ngModel)]="email" placeholder="e-mail"
-                        aria-label="Usuario" aria-describedby="basic-addon1">
-                      </div>
-                      <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Clave</span>
-                        </div>
-                        <input type="password" class="form-control" [(ngModel)]="pass" placeholder="Clave" aria-label="Clave" aria-describedby="basic-addon1">
-                      </div>
-                      <div class="input-group mb-3" *ngIf="profile == 'Profesional'">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Matr&iacute;cula Medica</span>
-                        </div>
-                        <input type="text" class="form-control" [(ngModel)]="mdLicence" placeholder="Matr&iacute;cula Medica" aria-label="Clave" aria-describedby="basic-addon1">
-                      </div>
-                      <!-- <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <label class="input-group-text" for="inputGroupSelect01">Avatar 1</label>
-                        </div>
-                        <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="user.image1" >
-                          <option value="../../../assets/images/icons/avatar_female1.png">Mujer 1</option>
-                          <option value="../../../assets/images/icons/avatar_female2.png">Mujer 2</option>
-                          <option value="../../../assets/images/icons/avatar_female3.png">Mujer 3</option>
-                          <option value="../../../assets/images/icons/avatar_female4.png">Mujer 4</option>
-                          <option value="../../../assets/images/icons/avatar_male1.png">Hombre 1</option>
-                          <option value="../../../assets/images/icons/avatar_male2.png">Hombre 2</option>
-                          <option value="../../../assets/images/icons/avatar_male3.png">Hombre 3</option>
-                          <option value="../../../assets/images/icons/avatar_male4.png">Hombre 4</option>
-                        </select>
-                      </div>
-                      <div *ngIf="user.profile == 'Profesional'" class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <label class="input-group-text" for="inputGroupSelect01">Avatar 2</label>
-                        </div>
-                        <select class="custom-select" id="inputGroupSelect02" [(ngModel)]="user.image2">
-                          <option value="../../../assets/images/icons/avatar_female1.png">Mujer 1</option>
-                          <option value="../../../assets/images/icons/avatar_female2.png">Mujer 2</option>
-                          <option value="../../../assets/images/icons/avatar_female3.png">Mujer 3</option>
-                          <option value="../../../assets/images/icons/avatar_female4.png">Mujer 4</option>
-                          <option value="../../../assets/images/icons/avatar_male1.png">Hombre 1</option>
-                          <option value="../../../assets/images/icons/avatar_male2.png">Hombre 2</option>
-                          <option value="../../../assets/images/icons/avatar_male3.png">Hombre 3</option>
-                          <option value="../../../assets/images/icons/avatar_male4.png">Hombre 4</option>
-                        </select>
-                      </div> -->
-                      <h5>Imágenes</h5>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <app-upload-file (detalleImagen)="imgUpload1($event)"></app-upload-file>
-                        </div>
-                        <div class="col-md-6" *ngIf="profile == 'Profesional'">
-                          <app-upload-file (detalleImagen)="imgUpload2($event)"></app-upload-file>
-                        </div>
-                      </div>
-                      <!-- <div class="row">
-                        <img *ngIf="user.image1 != ''" class="avatar" src='{{user.image1}}' alt="img1" >
-                        <img *ngIf="user.profile == 'Profesional' && user.image1 != ''" class="avatar" src='{{user.image2}}' alt="img2" >
-                      </div> -->
-                      <!-- <hr>Im&aacute;genes disponibles
-                      <div class="row mx-auto">
-                        <img class="avatar" src="../../../assets/images/icons/avatar_female1.png" alt="Female1" (click)="assignImg('avatar_female1')">
-                        <img class="avatar" src="../../../assets/images/icons/avatar_female2.png" alt="Female2" (click)="assignImg('avatar_female2')">
-                        <img class="avatar" src="../../../assets/images/icons/avatar_female3.png" alt="Female3" (click)="assignImg('avatar_female3')">
-                        <img class="avatar" src="../../../assets/images/icons/avatar_female4.png" alt="Female4" (click)="assignImg('avatar_female4')">
-                        <img class="avatar" src="../../../assets/images/icons/avatar_male1.png"   alt="Male1"   (click)="assignImg('avatar_male1')">
-                        <img class="avatar" src="../../../assets/images/icons/avatar_male2.png"   alt="Male2"   (click)="assignImg('avatar_male2')">
-                        <img class="avatar" src="../../../assets/images/icons/avatar_male3.png"   alt="Male3"   (click)="assignImg('avatar_male3')">
-                        <img class="avatar" src="../../../assets/images/icons/avatar_male4.png"   alt="Male3"   (click)="assignImg('avatar_male4')">
-                      </div> -->
-                      <hr>
-                      <!-- <div class="mx-auto"> -->
-                        <recaptcha 
-                          [(ngModel)]="myRecaptcha"
-                          (scriptLoad)="onScriptLoad()"
-                          (scriptError)="onScriptError()"
-                        ></recaptcha>
-                      <!-- </div> -->
-                      <div class="mx-auto">
-                        <button type="button" class="btn btn-info" (click)="register()" shape="round" size="medium">Registrarse</button>
-                        <button type="button" class="btn btn-info" (click)="back()" shape="round" size="medium">Volver</button>
-                      </div>
-                    <div>
-                        <label>{{msg}}</label>
-                    </div>
-                </div>
+        <img src="../../../assets/images/health-login.jpg" class="card-img" alt="login">
+      </div>
+      <div class="col-md-8">
+        <div class="card text-center">
+          <div class="card-body">
+            <div class="card-header text-white bg-info">Alta de Usuario</div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="userProfile">Tipo de Usuario</label>
               </div>
+              <select class="custom-select" id="userProfile" [(ngModel)]="profile">
+                <!-- <option >Seleccione un tipo de usuario</option> -->
+                <option selected value="Paciente">Paciente</option>
+                <option value="Profesional">Profesional</option>
+                <!-- <option value="Administrador">Administrador</option> -->
+              </select>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Nombre</span>
+              </div>
+              <input type="text" class="form-control" [(ngModel)]="name" placeholder="Nombre "
+                aria-label="Usuario" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="lastname">Apellido</span>
+              </div>
+              <input type="text" class="form-control" [(ngModel)]="lastName" placeholder="Apellido"
+                aria-label="Apellido" aria-describedby="lastname">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon2">Usuario</span>
+              </div>
+              <input type="email" class="form-control" [(ngModel)]="email" placeholder="e-mail" aria-label="Usuario"
+                aria-describedby="basic-addon2">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">Clave</span>
+              </div>
+              <input type="password" class="form-control" [(ngModel)]="pass" placeholder="Clave" aria-label="Clave"
+                aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3" *ngIf="profile == 'Profesional'">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon4">Matr&iacute;cula Medica</span>
+              </div>
+              <input type="text" class="form-control" [(ngModel)]="mdLicence" placeholder="Matr&iacute;cula Medica"
+                aria-label="Clave" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3" *ngIf="profile == 'Profesional'">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="specialitySelect">Especialidad</label>
+              </div>
+              <select class="custom-select" id="specialitySelect" [(ngModel)]="specialitySelected">
+                <option value="" selected disabled hidden>Seleccione una Especialidad</option>
+                <option *ngFor="let spec of specialityList" value="{{spec.name}}">{{spec.name}}</option>
+              </select>
+            </div>
+            <h5>Imágenes</h5>
+            <div class="row">
+              <div class="col-md-6">
+                <app-upload-file (detalleImagen)="imgUpload1($event)"></app-upload-file>
+              </div>
+              <div class="col-md-6" *ngIf="profile == 'Paciente'">
+                <app-upload-file (detalleImagen)="imgUpload2($event)"></app-upload-file>
+              </div>
+            </div>
+            <hr>
+            <div>
+              <label for="chkDisableCapcha">Deshabilitar Captcha
+                <input type="checkbox" [(ngModel)]="chkDisableCapcha" id="chkDisableCapcha">
+              </label>
+            </div>
+            <recaptcha [(ngModel)]="myRecaptcha" (scriptLoad)="onScriptLoad()" (scriptError)="onScriptError()"></recaptcha>
+            <div class="mx-auto">
+              <button type="button" class="btn btn-info" (click)="register()" shape="round"
+                size="medium">Registrarse</button>
+              <button type="button" class="btn btn-info" (click)="back()" shape="round" size="medium">Volver</button>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
   </div>
 </body>

@@ -9,18 +9,19 @@
                     <div class="card-header text-white bg-info">Turnos</div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                          <label class="input-group-text" for="inputGroupSelect01">Especialidad</label>
+                          <label class="input-group-text" for="specialitySelect">Especialidad</label>
                         </div>
-                        <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="especialitySelected">
-                          <option selected>Seleccione una especialidad</option>
-
+                        <select class="custom-select" id="specialitySelect" [(ngModel)]="especialitySelected">
+                          <option value="" selected disabled hidden >Seleccione una Especialidad</option>
+                          <option *ngFor="let spec of specialityList" value="{{spec.name}}">{{spec.name}}</option>
                         </select>
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                          <label class="input-group-text" for="inputGroupSelect01">Profesional</label>
+                          <label class="input-group-text" for="profesionalSelect">Profesional</label>
                         </div>
-                        <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="profesionalSelected" placeholder="Seleccione un Profesional">
+                        <select class="custom-select" id="profesionalSelect" [(ngModel)]="profesionalSelected" placeholder="Seleccione un Profesional">
+                          <option value="" selected disabled hidden >Seleccione un Profesional</option>
                           <option *ngFor="let prof of profesionaList" value="{{prof.name}}">{{prof.name}}</option>
                         </select>
                     </div>                    

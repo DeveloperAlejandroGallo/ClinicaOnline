@@ -11,6 +11,9 @@ export class FireAuthService {
   constructor(private fireAuth: AngularFireAuth,
               private router: Router) { }
 
+  isLoggedIn: boolean;
+  redirectUrl: string;
+
   public async signIn(email: string, pass: string) {
     return this.fireAuth.signInWithEmailAndPassword(email, pass);
   }

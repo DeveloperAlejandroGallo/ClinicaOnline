@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/class/user';
 import { FireAuthService } from 'src/app/service/fire-auth.service';
 import { FireStoreService } from 'src/app/service/fire-store.service';
+import { UserService } from 'src/app/service/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -12,58 +14,75 @@ import { FireStoreService } from 'src/app/service/fire-store.service';
 export class LoginComponent implements OnInit {
 
   constructor(private router: Router,
-              private authService: FireAuthService,
-              private fireStore: FireStoreService) { }
+    private authService: FireAuthService,
+    private fireStore: FireStoreService,
+    private usrService: UserService) { }
   // user = new User();
   msg: string;
   email: string;
   pass: string;
+  activeUsr: User;
 
   ngOnInit(): void {
   }
-  save(event): void
-  {
+  save(event): void {
     this.btnLogin();
   }
 
-  public register(){
+  public register() {
     console.log('Click on registry');
     this.router.navigate(['/registry']);
   }
 
-  public adminLogin(){
+  public adminLogin() {
     this.email = 'admin@admin.com';
     this.pass = 'administrador';
-  
+
   }
 
-  public profesionalLogin(){
+  public profesionalLogin() {
     this.email = 'profesional@profesional.com';
     this.pass = 'profesional';
 
   }
 
-  public patientLogin(){
+  public patientLogin() {
     this.email = 'paciente@paciente.com';
     this.pass = 'paciente';
 
   }
 
-  public btnLogin(): void
-  {
+  public btnLogin(): void {
     // this.email = (document.getElementById('txtUsuario') as HTMLInputElement).value;
     // this.pass = (document.getElementById('txtpass') as HTMLInputElement).value;
 
-    console.log(this.email );
-    console.log(this.pass );
+    console.log(this.email);
+    console.log(this.pass);
 
     if (this.pass !== '' && this.pass !== undefined) {
       this.authService
         .signIn(this.email, this.pass)
         .then((resp) => {
-          
-          this.msg = 'Bienvenido';
-          this.router.navigate(['/home'])
+
+          this.usrService.getUsersByEmail(this.email).subscribe(res => {
+            this.activeUsr = res;
+            this.authService.isLoggedIn = true;
+            //Check de email verificado para los pacientes
+            // if (this.activeUsr.profile == 'Paciente') {
+            //   if (resp.user.emailVerified) {
+            //     this.router.navigate(['/home']);
+            //   } else {
+            //     Swal.fire({
+            //       title: 'Verificar Email',
+            //       text: 'Por favor ingrese a su correo y verifique su email.',
+            //       icon: "warning"
+            //     });
+            //   }
+            // } else {
+            //   this.router.navigate(['/home']);
+            // }
+            this.router.navigate(['/home']);
+          });
         })
         .catch((error) => {
           console.log(error.code);
@@ -81,9 +100,18 @@ export class LoginComponent implements OnInit {
             default:
               this.msg = error.message;
           }
+          Swal.fire({
+            title: 'Error',
+            text: this.msg,
+            icon: "error"
+          });
         });
     } else {
-      this.msg = 'Por favor ingrese una clave';
+      Swal.fire({
+        title: 'Error',
+        text: this.msg,
+        icon: "error"
+      });
     }
   }
 }

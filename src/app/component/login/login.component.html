@@ -7,43 +7,54 @@
             <div class="card text-center">
                 <div class="card-body">
                     <div class="card-header text-white bg-info">Login</div>
-                    <div class="input-group mb-3">
+                    <!-- <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                          <label class="input-group-text" for="inputGroupSelect01">Tipo de Usuario</label>
+                            <label class="input-group-text" for="inputGroupSelect01">Tipo de Usuario</label>
                         </div>
                         <select class="custom-select" id="inputGroupSelect01">
-                          <option selected>Seleccione un tipo de usuario</option>
-                          <option value="Paciente">Paciente</option>
-                          <option value="Profesional">Profesional</option>
-                          <option value="Administrador">Administrador</option>
+                            <option selected>Seleccione un tipo de usuario</option>
+                            <option value="Paciente">Paciente</option>
+                            <option value="Profesional">Profesional</option>
+                            <option value="Administrador">Administrador</option>
                         </select>
-                    </div>
+                    </div> -->
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">email</span>
+                            <span class="input-group-text" id="Email">Email</span>
                         </div>
                         <input type="email" class="form-control" [(ngModel)]="email" placeholder="Ingrese su email"
-                            aria-label="Usuario" aria-describedby="basic-addon1">
+                            aria-label="Usuario" aria-describedby="Email">
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Clave</span>
+                            <span class="input-group-text" id="Pass">Clave</span>
                         </div>
-                        <input type="password" class="form-control" [(ngModel)]="pass" placeholder="Ingrese su clave" aria-label="Clave" aria-describedby="basic-addon1">
+                        <input type="password" class="form-control" [(ngModel)]="pass" placeholder="Ingrese su clave"
+                            aria-label="Clave" aria-describedby="Pass">
                     </div>
-                    <button type="button" class="btn btn-info" (click)="btnLogin()" shape="round" size="medium">Ingresar</button>
-                    <button type="button" class="btn btn-info" (click)="register()" shape="round" size="medium">Registrarse</button>
+                    <button type="button" class="btn btn-info" (click)="btnLogin()" shape="round"
+                        size="medium">Ingresar</button>
+                    <button type="button" class="btn btn-info" (click)="register()" shape="round"
+                        size="medium">Registrarse</button>
                     <hr>
                     <div>
-                        <button type="button" class="btn btn-info" (click)="adminLogin()" shape="round" size="medium">Admin</button>
-                        <button type="button" class="btn btn-info" (click)="profesionalLogin()" shape="round" size="medium">Profesional</button>
-                        <button type="button" class="btn btn-info" (click)="patientLogin()" shape="round" size="medium">Paciente</button>
-                    </div>
-                    <div>
-                        <label>{{msg}}</label>
+                        <button type="button" class="btn btn-info" (click)="adminLogin()" shape="round"
+                            size="medium">Admin</button>
+                        <button type="button" class="btn btn-info" (click)="profesionalLogin()" shape="round"
+                            size="medium">Profesional</button>
+                        <button type="button" class="btn btn-info" (click)="patientLogin()" shape="round"
+                            size="medium">Paciente</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- <div *ngIf="showError" class="card text-center text-white bg-danger mb-3" style="width: 18rem;">
+    <div class="card-header">Error</div>
+    <div class="card-body">
+        <h5 class="card-title">Verificar Email</h5>
+        <p class="card-text">Por favor ingrese a su correo y verifique su email.</p>
+    </div>
+</div> -->

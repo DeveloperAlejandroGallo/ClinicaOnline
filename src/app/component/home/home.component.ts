@@ -58,4 +58,24 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  public getAppointment() {
+    this.router.navigate(['/patient']);
+  }
+
+  public viewAppointments() {
+    this.router.navigate(['/patient']);
+  }
+
+  public setAttentionDays() {
+    this.router.navigate(['/profesional/calendario']);
+  }
+
+  public manageAppointments() {
+    this.router.navigate['/profesional/appointments']
+  }
+
+  public approveProfesional() {
+    this.router.navigate(['/admin/approve']);
+  }
+
 }

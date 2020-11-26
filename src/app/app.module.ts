@@ -23,6 +23,25 @@ import { AdminMenuComponent } from './component/admin/admin-menu/admin-menu.comp
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
 import { AppointmentComponent } from './component/patient/appointment/appointment.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ProfesionalListComponent } from './component/profesional/profesional-list/profesional-list.component';
+// import { AppointmentListComponent } from './component/profesional/appointment-list/appointment-list.component';
+import { SpecialityListComponent } from './component/speciality-list/speciality-list.component';
+import { PatientAppointmentListComponent } from './component/patient/patient-appointment-list/patient-appointment-list.component';
+import { ProfesionalAppointmentListComponent } from './component/profesional/profesional-appointment-list/profesional-appointment-list.component';
+import { ProfesionalAppointmentComponent } from './component/profesional/profesional-appointment/profesional-appointment.component';
+import { NavBarComponent } from './component/nav-bar/nav-bar.component';
+import { HeaderComponent } from './component/header/header.component';
+import { ChangeColorDirective } from './service/change-color.directive';
+import { FilterPipe } from './pipes/filter.pipe';
+import { AppointmentListComponent } from './component/appointment/appointment-list/appointment-list.component';
+import { DaysOfAttentionComponent } from './component/days-of-attention/days-of-attention.component';
+import { ApproveProfesionalComponent } from './component/admin/approve-profesional/approve-profesional.component';
+import { AppointmentMenuComponent } from './component/appointment/appointment-menu/appointment-menu.component';
+import { AppointmentDetailComponent } from './component/appointment/appointment-detail/appointment-detail.component';
+import { FilterAppointmentPipe } from './pipes/filter-appointment.pipe';
+import { FilterProfStatePipe } from './pipes/filter-prof-state.pipe';
+import { FilterUserPipe } from "./pipes/filter-user.pipe";
+import { UserListComponent } from "./component/user/user-list/user-list.component";
 
 @NgModule({
   declarations: [
@@ -36,7 +55,25 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     ProfesionalMenuComponent,
     AdminMenuComponent,
     UserProfileComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    ProfesionalListComponent,
+    SpecialityListComponent,
+    PatientAppointmentListComponent,
+    ProfesionalAppointmentListComponent,
+    ProfesionalAppointmentComponent,
+    NavBarComponent,
+    HeaderComponent,
+    ChangeColorDirective,
+    FilterPipe,
+    AppointmentListComponent,
+    DaysOfAttentionComponent,
+    ApproveProfesionalComponent,
+    AppointmentMenuComponent,
+    AppointmentDetailComponent,
+    FilterAppointmentPipe,
+    FilterProfStatePipe,
+    FilterUserPipe,
+    UserListComponent
   ],
   imports: [
     BrowserModule,

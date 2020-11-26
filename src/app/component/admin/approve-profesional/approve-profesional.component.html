@@ -1,0 +1,58 @@
+<div class="card mb-12">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="../../../../assets/images/AproveDoc.png" class="card-img" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-header">Aprobar Profesionales</div>
+      <div class="card-body">
+        <p class="card-text">Seleccione un profesional y los días de atención para aprobarlo.</p>
+        <div *ngIf="!profesionalSelected()">
+          <app-user-list [profileInput]="'Profesional'" [filterTypeInput]="'approved'" [filterValueInput]="'false'"
+            (userOutput)="getUser($event)"></app-user-list>
+        </div>
+        <div *ngIf="profesionalSelected()">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="profesionalSelected">Profesional</span>
+            </div>
+            <input type="text" class="form-control"
+              [(ngModel)]="profesional.name +', '+profesional.lastName" placeholder="Profesional"
+              aria-label="Profesional" aria-describedby="profesionalSelected" readonly>
+          </div>
+          <button type="button" class="button btn-warning" (click)="changeProfesional()">Cambiar</button>
+        </div>
+        <div *ngIf="profesionalSelected()">
+          <div *ngFor="let sd of specialitiesDaysList">
+            <p>{{getdays(sd)}}</p>
+          </div>
+        </div>
+        <hr>
+        <div *ngIf="profesionalSelected()">
+          <h5>Días de atención:</h5>
+          <div class="row" >
+            <div class="col"><label>Lunes<input type="checkbox" name="chkM"   id="chkM"  [(ngModel)]="monday">   </label></div>
+            <div class="col"><label>Martes<input type="checkbox" name="chkTu"  id="chkTu" [(ngModel)]="tuesday">  </label></div>
+            <div class="col"><label>Miércoles<input type="checkbox" name="chkW"   id="chkW"  [(ngModel)]="wednesday"></label></div>
+            <div class="col"><label>Jueves<input type="checkbox" name="chkTh"  id="chkTh" [(ngModel)]="thursday"> </label></div>
+            <div class="col"><label>Viernes<input type="checkbox" name="chkF"   id="chkF"  [(ngModel)]="friday">   </label></div>
+          </div>
+
+        </div>
+        <div *ngIf="!specialitySelected() && profesionalSelected()">
+          <app-speciality-list (sendSpeciality)="recieveSpeciality($event)"></app-speciality-list>
+        </div>
+        <div *ngIf="specialitySelected() && profesionalSelected()">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="especialitySelected">Especialidad</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="speciality.name" placeholder="Especialidad"
+              aria-label="Especialidad" aria-describedby="especialitySelected" readonly>
+          </div>
+          <button type="button" class="button btn-warning" (click)="btnChangeSpeciality()">Cambiar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

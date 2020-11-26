@@ -1,0 +1,25 @@
+<div class="card">
+    <div class="card text-center">
+        <div class="card-header">
+            <h5>Profesionales</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-sm table-bordered">
+                <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Nombre</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let prof of profesionalList">
+                        <img height=80px width=80px [src]="prof.image1" alt="">
+                        <td>{{prof.name +', '+ prof.lastName}}</td>
+                        <td><button type="button" class="button btn-info" name="" id="" (click)="selectProfesional(prof)">Elegir</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

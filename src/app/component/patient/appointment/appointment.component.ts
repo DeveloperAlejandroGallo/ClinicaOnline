@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Speciality } from 'src/app/class/speciality';
 import { User } from 'src/app/class/user';
+import { AppointmentService } from 'src/app/service/appointment.service';
+import { SpecialityService } from 'src/app/service/speciality.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -9,7 +12,12 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class AppointmentComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  @Input() specialityRecibed: Speciality;
+  @Input() profesionalRecibed: User;
+
+  constructor(private userService: UserService,
+              private appointmentService: AppointmentService,
+              private specialityService: SpecialityService) { }
   profesionalSelected: string;
   especialitySelected: string;
   appointmentDate: Date;
@@ -17,13 +25,21 @@ export class AppointmentComponent implements OnInit {
   hourSelected: number;
   minSelected: number;
   profesionaList: Array<User>;
+  specialityList: Array<Speciality>;
 
 
   ngOnInit(): void {
     this.userService.getUsersByProfile('Paciente').subscribe(res =>{
-      console.log(res);
       this.profesionaList = res;
     });
+
+    this.specialityService.getSpecialities().subscribe(res =>{
+
+      this.specialityList =  res;
+      console.table(this.specialityList);
+
+    });
+
   }
 
 

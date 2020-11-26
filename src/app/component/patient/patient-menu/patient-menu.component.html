@@ -1,11 +1,70 @@
-<div class="card-header text-white bg-info">
+<!-- <div class="card-header text-white bg-info">
     <h6>{{profile}}: {{name}} ({{email}})
-        <button type="button" class="btn btn-warning" (click)="menuSelector('turno')" shape="round" size="medium">Turno</button>
-        <button type="button" class="btn btn-warning" (click)="menuSelector('datos')" shape="round" size="medium">Datos</button>
+        <button type="button" class="btn btn-warning" (click)="menuSelector('turno')" shape="round"
+            size="medium">Turno</button>
+        <button type="button" class="btn btn-warning" (click)="menuSelector('datos')" shape="round"
+            size="medium">Datos</button>
         <button type="button" class="btn btn-warning" (click)="back()" shape="round" size="medium">Volver</button></h6>
+</div> -->
+<app-nav-bar></app-nav-bar>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card text-center">
+                <div class="card-header">
+                    <H5>SOLICITAR TURNO</H5>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <div *ngIf="!specialitySelected()">
+                        <app-speciality-list (sendSpeciality)="recibeSpeciality($event)"></app-speciality-list>
+                    </div>
+                    <div *ngIf="specialitySelected()">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="especialitySelected">Especialidad</span>
+                            </div>
+                            <input type="text" class="form-control" [(ngModel)]="speciality.name"
+                                placeholder="Especialidad" aria-label="Especialidad" aria-describedby="especialitySelected" readonly>
+                        </div>
+                        <button type="button" class="button btn-warning" (click)="btnChangeSpeciality()">Cambiar</button>
+                    </div>
+                    <!-- Profesional -->
+                    <div *ngIf="!profesionalSelected() && specialitySelected()">
+                        <app-profesional-list [specialityRecibed]="this.speciality" (sendProfesional)="recibeProfesional($event)"></app-profesional-list>
+                    </div>
+                    <div *ngIf="profesionalSelected()">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="profesionalSelected">Profesional</span>
+                            </div>
+                            <input type="text" class="form-control" [(ngModel)]="profesional.name" placeholder="Profesional"
+                                aria-label="Profesional" aria-describedby="profesionalSelected" readonly>
+                        </div>
+                        <button type="button" class="button btn-warning" (click)="btnChangeProfesional()">Cambiar</button>
+                    </div>
+                    <!-- Appointment -->
+                    <div *ngIf="!dateSelected() && profesionalSelected() && specialitySelected()">
+                        <app-patient-appointment-list [profesionalRecibed]="this.profesional"></app-patient-appointment-list>
+                    </div>
+                    <div *ngIf="dateSelected()">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="dateSelected">Fecha</span>
+                            </div>
+                            <input type="text" class="form-control" [(ngModel)]="date" placeholder="Fecha"
+                                aria-label="Fecha" aria-describedby="dateSelected" readonly>
+                        </div>
+                        <button type="button" class="button btn-warning" (click)="btnChangeDate()">Cambiar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="card">
+
+<!-- <div class="card">
     <div *ngIf="menu==1">
         <app-appointment></app-appointment>
     </div>
-</div>
+</div> -->

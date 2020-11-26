@@ -1,9 +1,19 @@
 export class Speciality {
-    id:string;
-    description:string;
+    name:string;
+    image?: string;
+    id?:string;
 
-    constructor(descripcion:string, id:string) {
+    constructor(name:string, image?: string, id?: string) {
+        this.name=name;
+        this.image=image;
         this.id= id;
-        this.description=descripcion;
+    }
+
+    public toJson() {
+        return{
+            "name": this.name,
+            "image": this.image,
+            "id": this.id
+        }
     }
 }

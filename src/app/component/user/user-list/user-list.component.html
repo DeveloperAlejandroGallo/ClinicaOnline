@@ -1,0 +1,43 @@
+<div class="card">
+    <div class="card text-center">
+        <div class="card-header">
+            <h5>{{tableTitle}}</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-sm table-bordered">
+                <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th *ngIf="profileInput == 'Profesional'">Especialidades</th>
+                        <th *ngIf="profileInput == 'Profesional'">Dias de Atención</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let usr of (userList | filterUser: filterTypeInput : filterValueInput)">
+                        <img height=80px width=80px [src]="usr.image1" alt="">
+                        <td>{{usr.name +', '+ usr.lastName}}</td>
+                        <td>{{usr.email}}</td>
+                        <td *ngIf="profileInput == 'Profesional'">
+                            <tr *ngFor="let spec of usr.specialitiesDays">
+                                <td>{{spec.spec.name}}</td>
+                            </tr>
+                        </td>
+                        <td *ngIf="profileInput == 'Profesional'">
+                            <tr *ngFor="let spec of usr.specialitiesDays">
+                                <td *ngIf="spec.monday">L</td>
+                                <td *ngIf="spec.tuesday">Ma</td>
+                                <td *ngIf="spec.wednesday">Mi</td>
+                                <td *ngIf="spec.thursday">J</td>
+                                <td *ngIf="spec.friday">V</td>
+                            </tr>
+                        </td>
+                        <td><button type="button" class="button btn-info" name="" id="" (click)="selectUser(usr)">Elegir</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

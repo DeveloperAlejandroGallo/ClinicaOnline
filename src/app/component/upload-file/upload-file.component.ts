@@ -19,7 +19,7 @@ export class UploadFileComponent implements OnInit {
     });
   }
 
-  public mensajeArchivo = 'No hay un archivo seleccionado';
+  public mensajeArchivo = 'Sin seleccion';
   public datosFormulario = new FormData();
   public nombreArchivo = '';
   public URLPublica = '';
@@ -41,7 +41,7 @@ export class UploadFileComponent implements OnInit {
         this.detalleImagen.emit(this.datosFormulario.get('archivo'));
       }
     } else {
-      this.mensajeArchivo = 'No hay un archivo seleccionado';
+      this.mensajeArchivo = 'Sin seleccion';
     }
   }
 
