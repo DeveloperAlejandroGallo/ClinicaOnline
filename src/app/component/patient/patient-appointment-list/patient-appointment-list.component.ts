@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Speciality } from 'src/app/class/speciality';
+import { SpecialityDays } from 'src/app/class/speciality-days';
+import { User } from 'src/app/class/user';
 
 @Component({
   selector: 'app-patient-appointment-list',
@@ -9,7 +12,13 @@ export class PatientAppointmentListComponent implements OnInit {
 
   constructor() { }
 
+
   ngOnInit(): void {
   }
 
+
+
+
+
+  
 }

@@ -38,11 +38,11 @@ export class SpecialityService {
     let array;
     let aux=[];
     array=this.objecToArray(res);
-    console.log('En el filter: ' + array);
+    // console.log('En el filter: ' + array);
       for (let index = 0; index < array.length; index++) {
         const element = array[index];
           aux.push(element);
-          console.log(element);
+          // console.log(element);
       }
       return aux;
   }
@@ -57,7 +57,7 @@ export class SpecialityService {
           let element: any = data[key];
           element.id=key;
           array.push(element);
-          console.log('Cada elemento: ' + element.name);
+          // console.log('Cada elemento: ' + element.name);
     })
     return array;
   }

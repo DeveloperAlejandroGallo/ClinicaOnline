@@ -5,6 +5,7 @@ import { User } from '../class/user';
 import { environment } from "src/environments/environment";
 import { map } from 'rxjs/operators';
 import { Speciality } from '../class/speciality';
+import { SpecialityDays } from '../class/speciality-days';
 
 
 @Injectable({
@@ -26,6 +27,7 @@ export class UserService {
   }
 
   getUsers(){
+    this.userList= this.fireUsers.object('usuarios').valueChanges().pipe(map(datos=>{return this.objecToArray(datos)}));
     return this.userList;
   }
 
@@ -55,8 +57,12 @@ export class UserService {
     });    
   }
  
-  changeUserApproved(id:string,approved:boolean, specDays: Array<{spec: Speciality,sunday: boolean,monday: boolean,tuesday: boolean,wednesday: boolean,thursday: boolean,friday: boolean,saturday: boolean}>){
-    return this.http.patch(environment.firebase.databaseURL+"/usuarios/"+id+".json",{approved:approved, specialitiesDays:specDays}).subscribe(resp=>{
+  changeUserApproved(id:string,approved:boolean){
+    return this.http.patch(environment.firebase.databaseURL+"/usuarios/"+id+".json",{approved:approved}).subscribe(resp=>{
+    });    
+  }
+  changeUserSpecialityDays(id:string,specDays: Array<SpecialityDays>){
+    return this.http.patch(environment.firebase.databaseURL+"/usuarios/"+id+".json",{specialitiesDays:specDays}).subscribe(resp=>{
     });    
   }
 
@@ -100,13 +106,13 @@ public filterByProfile(res: any, profile: string) {
     return aux;  
 }
 public filterBySpeciality(res: any, spec: string) {
-  console.log('filterBySpeciality:' + spec);
+  // console.log('filterBySpeciality:' + spec);
   let usuarios;
   let aux=[];
   usuarios=this.objecToArray(res);
     for (let index = 0; index < usuarios.length; index++) {
       const element = usuarios[index];
-      console.log('element '+index+ ':' +element)
+      // console.log('element '+index+ ':' +element)
 ;      if (element.speciality == spec) {
         aux.push(element);
       }

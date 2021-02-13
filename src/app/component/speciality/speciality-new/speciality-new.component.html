@@ -1,0 +1,19 @@
+<!-- <div *ngIf="showAddInput"> -->
+<div>
+    <h5>Nueva Especialidad</h5>
+    <div class="row">
+        <div class="col-4">
+            <app-upload-file (detalleImagen)="imgUpload($event)"></app-upload-file>
+        </div>
+        <div class="col-8">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Nueva Especialidad"
+                    aria-label="Nombre especialidad" aria-describedby="button-addon2" [(ngModel)]="name">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="btnAdd" 
+                        (click)="createSpeciality()">Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -44,7 +44,7 @@ export class AppointmentComponent implements OnInit {
 
 
   save() {
-    console.log('save');
+    // console.log('save');
   }
 
 }

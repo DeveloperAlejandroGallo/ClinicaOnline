@@ -33,7 +33,7 @@ export class UserProfileComponent implements OnInit {
           this.profile = res.profile;
           this.name = res.name;
         });
-    }).catch(err => {console.log('Error al obtener current user: ' +err)});
+    }).catch(err => {console.error('Error al obtener current user: ' +err)});
   
   }
   public back() {

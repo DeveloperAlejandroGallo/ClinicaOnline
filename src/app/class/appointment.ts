@@ -6,14 +6,15 @@ export class Appointment {
     speciality: Speciality;
     Date: Date;
     Hour: string;
-    Minutes: string;
+    // Minutes: string;
     DayOfTheWeek: string;
-    active: boolean
+    active: boolean;
+    attended: boolean;
     patient?: User;
     id?: string;
     patientComment?: string;
     profesionalComment?: string;
-    extraData: [{ field: string, value: string}]
+    extraData?: [{ field: string, value: string}];
 
 
     constructor(
@@ -21,28 +22,29 @@ export class Appointment {
         speciality: Speciality,
         Date: Date,
         Hour: string,
-        Minutes: string,
+        // Minutes: string,
         DayOfTheWeek: string,
         active: boolean,
+        attended: boolean,
         patient?: User,
         id?: string,
         patientComment?: string,
         profesionalComment?: string,
         extraData?: [{ field: string, value: string}]
         ) {
-            
-            profesional = this.profesional;
-            speciality = this.speciality;
-            Date = this.Date;
-            Hour = this.Hour;
-            Minutes = this.Minutes;
-            DayOfTheWeek = this.DayOfTheWeek;
-            active = this.active;
-            patient = this.patient;
-            id = this.id;
-            patientComment = this.patientComment;
-            profesionalComment = this.profesionalComment;
-            extraData = this.extraData;
+            this.profesional = profesional;
+            this.speciality = speciality;
+            this.Date = Date;
+            this.Hour = Hour;
+            // Minutes = this.Minutes;
+            this.DayOfTheWeek = DayOfTheWeek;
+            this.active = active;
+            this.attended = attended;
+            this.patient = patient;
+            this.id = id;
+            this.patientComment = patientComment;
+            this.profesionalComment = profesionalComment;
+            this.extraData = extraData;
 
     }
 
@@ -52,9 +54,10 @@ export class Appointment {
             "speciality": this.speciality,
             "Date": this.Date,
             "Hour": this.Hour,
-            "Minutes": this.Minutes,
+            // "Minutes": this.Minutes,
             "DayOfTheWeek": this.DayOfTheWeek,
             "active": this.active,
+            "attended": this.attended,
             "patient": this.patient,
             "id": this.id,
             "patientComment": this.patientComment,

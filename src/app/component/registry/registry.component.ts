@@ -54,7 +54,7 @@ export class RegistryComponent implements OnInit {
 
   ngOnInit(): void {
     // this.user = new User();
-    console.log('Ingreso a registry');
+    // console.log('Ingreso a registry');
     // this.image1 = '../../../assets/images/icons/avatar_female1.png';
     // this.image2 = '../../../assets/images/icons/avatar_male1.png';
 
@@ -68,7 +68,7 @@ export class RegistryComponent implements OnInit {
         if (res.profile == "Administrador")
           this.adminActive = true;
       });
-    }).catch(err => { console.log('Error al obtener current user: ' + err) });
+    }).catch(err => { console.error('Error al obtener current user: ' + err) });
 
     this.specialityService.getSpecialities().subscribe(res => {
 
@@ -84,15 +84,15 @@ export class RegistryComponent implements OnInit {
 
   // reCaptcha
   onScriptLoad() {
-    console.log("Load captcha");
+    // console.log("Load captcha");
   }
 
   onScriptError() {
-    console.log("Error captcha");
+    console.error("Error captcha");
   }
 
   resolved(captchaResponse: string, res) {
-    console.log(`Resolved response token: ${captchaResponse}`);
+    // console.log(`Resolved response token: ${captchaResponse}`);
   }
 
 
@@ -116,14 +116,14 @@ export class RegistryComponent implements OnInit {
     } else {
 
       this.fireAuth.register(this.email, this.pass).then(res => {
-        console.log('registrando: ');
+        // console.log('registrando: ');
         console.table(res);
         res.user.sendEmailVerification({
            handleCodeInApp: true,
            url: environment.urlVerify
           })
       }).catch(error => {
-        console.log(error);
+        console.error(error);
         switch (error.code) {
           case 'auth/weak-password':
             this.msg = 'La clave debe poseer al menos 6 caracteres';
@@ -159,19 +159,19 @@ export class RegistryComponent implements OnInit {
 
       this.fireStorage.uploadFile(this.email + "_1", this.image1, userMetaData).then(resp => {
         refImg1 = this.fireStorage.linkToPublicFile(this.email + "_1");
-        console.log("refImg1" + refImg1);
+        // console.log("refImg1" + refImg1);
         refImg1.getDownloadURL().subscribe((URL) => {
-          console.log("link publico 1: " + URL);
+          // console.log("link publico 1: " + URL);
           this.publicURL1 = URL;
 
           if (this.profile == 'Paciente') {
             this.fireStorage.uploadFile(this.email + "_2", this.image2, userMetaData).then(resp => {
               refImg2 = this.fireStorage.linkToPublicFile(this.email + "_2");
               refImg2.getDownloadURL().subscribe((URL) => {
-                console.log("link publico 2" + URL);
+                // console.log("link publico 2" + URL);
                 this.publicURL2 = URL;
 
-                this.user = new User(this.email, this.pass, this.name, this.lastName, this.publicURL1, this.profile, true);
+                this.user = new User(this.email, this.pass, this.name, this.lastName, this.publicURL1, this.profile, true, this.publicURL2);
 
                 this.userService.createUser(this.user).subscribe((res: any) => {
                   Swal.fire({
@@ -179,12 +179,12 @@ export class RegistryComponent implements OnInit {
                     text: "Registro exitoso.\nDirijase a su casilla de correo para verificar su email.",
                     icon: "info"
                   }).then(r => {
-                    console.log('User Registered - Type: ' + this.profile)
+                    // console.log('User Registered - Type: ' + this.profile)
                     this.CleanFields();
                   });
                 });
               });
-            }).catch(err => { console.log("Error al subir img 2 - " + err) });
+            }).catch(err => { console.error("Error al subir img 2 - " + err) });
           }
           else {
             //Profesional
@@ -197,13 +197,13 @@ export class RegistryComponent implements OnInit {
                 text: "Registro exitoso.\nUna vez que aprueben su ingreso podrá atender.",
                 icon: "info"
               }).then(r => {
-                console.log('User Registered - Type: ' + this.profile)
+                // console.log('User Registered - Type: ' + this.profile)
                 this.CleanFields();
               });
             });
           }
         });
-      }).catch(error => { console.log("Error al subir img 1" + error) });
+      }).catch(error => { console.error("Error al subir img 1" + error) });
     }
   }
 
@@ -261,7 +261,7 @@ export class RegistryComponent implements OnInit {
     if (this.profile == 'Profesional' && this.mdLicence == ('' || undefined)) {
       this.msg = 'Debe ingresar un de licencia profesional.';
     }
-    console.log('myRecaptcha: ' + this.myRecaptcha)
+    // console.log('myRecaptcha: ' + this.myRecaptcha)
     if (!this.myRecaptcha && !this.chkDisableCapcha) {
       this.msg = 'Debe validar el Captcha.'
       return true;
@@ -274,7 +274,7 @@ export class RegistryComponent implements OnInit {
   }
 
   public assignImg(src: string) {
-    console.log('img cliequeada ' + src)
+    // console.log('img cliequeada ' + src)
 
   }
 

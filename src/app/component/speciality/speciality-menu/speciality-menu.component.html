@@ -1,0 +1,10 @@
+<div class="card">
+    <div class="card text-center">
+        <div class="card-body">
+            <app-speciality-list (specialitySelectedOutput)="recibeSpeciality($event)" [specialityListInput]="specialitiesList"></app-speciality-list>
+            <div *ngIf="showAddInput">
+                <app-speciality-new (specialityCratedOut)="recibeSpeciality($event)"></app-speciality-new>
+            </div>
+        </div>
+    </div>
+</div>

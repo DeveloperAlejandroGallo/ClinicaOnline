@@ -2,10 +2,10 @@
     <a class="navbar-brand" [routerLink]="['/home']" *ngIf="usuario">
         <img [src]="usuario.image1" width="40" height="40" class="d-inline-block align-top" alt="Home">
     </a>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown" *ngIf="usuarioActivo">
+    <div class="collapse navbar-collapse" id="navbarNavDropdown" *ngIf="usuario">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" [routerLink]="['/home']">{{'Usuario: ' + usuarioActivo.email}}<span class="sr-only">(current)</span></a>
+                <b><a class="nav-link" [routerLink]="['/home']">{{usuario.name.trim() +', ' + usuario.lastName.trim() + ' (' + usuario.email+')'}}<span class="sr-only">(current)</span></a></b>
             </li>
             <li class="nav-item">
                 <!-- <a class="nav-link" [routerLink]="['/MiPerfil']">Menu</a> -->

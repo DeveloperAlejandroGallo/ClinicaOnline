@@ -1,12 +1,3 @@
-<!-- <div class="card-header text-white bg-info">
-    <div class="row">
-      <div class="col-10">{{profile}}: {{name}} ({{email}})</div>
-      <div class="col-2" >
-          <button type="button" class="btn btn-secondary" (click)="goToProfile()">Mi Perfil</button>
-          <button type="button" class="btn btn-warning" (click)="back()" shape="round" size="medium">Salir</button>
-      </div>
-    </div>
-</div> -->
 <app-nav-bar></app-nav-bar>
 <app-header></app-header>
 
@@ -30,17 +21,24 @@
 </div>
 <div *ngIf="profile == 'Profesional'">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-4">
       <div class="card bg-info">
         <div appChangeColor="steelblue" class="card-body" (click)="setAttentionDays()">
           <h5 class="card-title text-white btnTit">Crear Turnos</h5>
         </div>
       </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
       <div class="card bg-info">
         <div appChangeColor="steelblue" class="card-body" (click)="manageAppointments()">
           <h5 class="card-title text-white btnTit">Administrar Turnos</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card bg-info">
+        <div appChangeColor="steelblue" class="card-body" (click)="attend()">
+          <h5 class="card-title text-white btnTit">Atender</h5>
         </div>
       </div>
     </div>
@@ -48,19 +46,19 @@
 </div>
 <div *ngIf="profile == 'Administrador'">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col">
       <div class="card bg-info">
         <div appChangeColor="steelblue" class="card-body" (click)="approveProfesional()">
           <h5 class="card-title text-white btnTit">Aprobar Profesional</h5>
         </div>
       </div>
     </div>
-    <div class="col-sm-6">
+    <!-- <div class="col-sm-6">
       <div class="card bg-info">
         <div appChangeColor="steelblue" class="card-body" (click)="setAppo()">
           <h5 class="card-title text-white btnTit">Crear Especialidad</h5>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>

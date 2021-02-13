@@ -9,12 +9,13 @@
                     <tr>
                         <th>Fecha y Hora</th>
                         <th>Profesional</th>
+                        <th>Paciente</th>
                         <th>Accion</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let ap of appointmentList | fiterAppointment">
-                        <td>{{ap.Date + '-' + ap.Hour}}</td>
+                    <tr *ngFor="let ap of appointmentList | filterAppointment: filterInput : 'Profesional' : usuarioActivo.email">
+                        <td>{{ap.Date | date: "dd/MM/yyyy" + '-' + ap.Hour}}</td>
                         <td>{{ap.profesional.name +', '+ ap.profesional.lastName}}</td>
                         <td>{{ap.patient.name +', '+ ap.patient.lastName}}</td>
                         <td><button type="button" class="button btn-info" name="" id="" (click)="selectAppointment(ap)">Elegir</button></td>

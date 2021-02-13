@@ -1,10 +1,11 @@
-<div class="card mb-12">
+<app-nav-bar></app-nav-bar>
+<div class="card text-center mb-12">
   <div class="row no-gutters">
     <div class="col-md-4">
       <img src="../../../../assets/images/AproveDoc.png" class="card-img" alt="...">
     </div>
     <div class="col-md-8">
-      <div class="card-header">Aprobar Profesionales</div>
+      <div class="card-header text-white bg-info">Aprobar Profesionales</div>
       <div class="card-body">
         <p class="card-text">Seleccione un profesional y los días de atención para aprobarlo.</p>
         <div *ngIf="!profesionalSelected()">
@@ -22,9 +23,11 @@
           </div>
           <button type="button" class="button btn-warning" (click)="changeProfesional()">Cambiar</button>
         </div>
+        <hr>
         <div *ngIf="profesionalSelected()">
+          <h5 class="text-white bg-info">Especialidades y días de atención</h5>
           <div *ngFor="let sd of specialitiesDaysList">
-            <p>{{getdays(sd)}}</p>
+            <p>{{getDays(sd)}}</p>
           </div>
         </div>
         <hr>
@@ -37,10 +40,9 @@
             <div class="col"><label>Jueves<input type="checkbox" name="chkTh"  id="chkTh" [(ngModel)]="thursday"> </label></div>
             <div class="col"><label>Viernes<input type="checkbox" name="chkF"   id="chkF"  [(ngModel)]="friday">   </label></div>
           </div>
-
         </div>
         <div *ngIf="!specialitySelected() && profesionalSelected()">
-          <app-speciality-list (sendSpeciality)="recieveSpeciality($event)"></app-speciality-list>
+          <app-speciality-menu (specialityOutput)="recieveSpeciality($event)" [showAddInput]="true"></app-speciality-menu>
         </div>
         <div *ngIf="specialitySelected() && profesionalSelected()">
           <div class="input-group mb-3">
@@ -50,8 +52,12 @@
             <input type="text" class="form-control" [(ngModel)]="speciality.name" placeholder="Especialidad"
               aria-label="Especialidad" aria-describedby="especialitySelected" readonly>
           </div>
-          <button type="button" class="button btn-warning" (click)="btnChangeSpeciality()">Cambiar</button>
+          <button type="button" class="button btn-warning" (click)="changeSpeciality()">Cambiar</button>
         </div>
+        <hr>
+        <button *ngIf="specialitySelected() && profesionalSelected() && anyDaySelected()" type="button" class="button btn-info" (click)="addAttention()">Agregar Horario</button>
+        <hr>
+        <button *ngIf="profesionalSelected() && haveDays()" type="button" class="button btn-info" (click)="approveProfesional()">Aprobar</button>
       </div>
     </div>
   </div>

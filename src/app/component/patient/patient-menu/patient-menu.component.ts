@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Appointment } from 'src/app/class/appointment';
 import { Speciality } from 'src/app/class/speciality';
 import { User } from 'src/app/class/user';
+import { AppointmentService } from 'src/app/service/appointment.service';
 import { FireAuthService } from 'src/app/service/fire-auth.service';
 import { UserService } from 'src/app/service/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-patient-menu',
@@ -14,7 +17,8 @@ export class PatientMenuComponent implements OnInit {
 
   constructor(private router: Router,
     private fireAuth: FireAuthService,
-    private userService: UserService) { }
+    private userService: UserService,
+    private appointServ: AppointmentService) { }
 
   msg: string;
   activeUser;
@@ -23,37 +27,44 @@ export class PatientMenuComponent implements OnInit {
   name: string;
   adminActive: boolean;
   menu = 0;
-
+  patient: User;
   speciality: Speciality;
   profesional: User;
-  date;
+  date: Date;
+  dateFormated: string;
+  hour: string;
 
+  appointment: Appointment;
 
   ngOnInit(): void {
-    this.fireAuth.currentUser().then(resp => {
-
-      this.activeUser = resp;
-
-      this.userService.getUsersByEmail(this.activeUser.email).subscribe(res => {
-        if (res.profile == "Administrador")
-          this.adminActive = true;
-
-        this.email = res.email;
-        this.profile = res.profile;
-        this.name = res.name;
-      });
-    }).catch(err => { console.log('Error al obtener current user en patient-menu: ' + err) });
-
+  
   }
 
   public back() {
     this.router.navigate(['/home']);
   }
 
-  public menuSelector(wich:string) {
-    if(wich == 'turno') this.menu = 1;
-    if(wich == 'datos') this.menu = 2;
-  } 
+  public getAppointment() {
+    
+    try {
+      console.log('Ingreso');
+      this.appointment =  new Appointment(this.profesional,this.speciality,this.date, this.hour, this.translateDay(this.date), 
+                          true, false, this.patient);
+      console.log('Luego del new');
+    } catch {
+      console.log('catch');
+    }
+    console.table(this.appointment);
+    this.appointServ.createAppointment(this.appointment).subscribe(r => {
+      Swal.fire({
+        title: 'Turno',
+        text: 'Generado correctamente',
+        icon: 'success'
+      }).then(re=>{
+        this.btnChangeSpeciality();
+      });
+    });
+  }
 
   public specialitySelected(): boolean {
     return this.speciality != (undefined && '' && null);
@@ -64,25 +75,69 @@ export class PatientMenuComponent implements OnInit {
   public dateSelected(): boolean {
     return this.date != (undefined && '' && null);
   }
+  public hourSelected(): boolean {
+    return this.hour != (undefined && '' && null);
+  }
 
   public btnChangeSpeciality() {
     this.speciality = null;
-    this.profesional = null;
-    this.date = null;
+    this.btnChangeProfesional();
   }
   public btnChangeProfesional() {
     this.profesional = null;
-    this.date = null;
+    this.btnChangeDate();
   }
   public btnChangeDate() {
     this.date = null;
+    this.dateFormated='';
+    this.btnChangeHour();
+  }
+  public btnChangeHour() {
+    this.hour = null;
   }
 
-  public recibeSpeciality(e)  {
-    console.log('recibeSpeciality:' + e.name)
+  public recievePatient(p: User) {
+    this.patient = p;
+  }
+
+  public recieveSpeciality(e)  {
     this.speciality = e;
+    console.table(this.speciality);
   }
-  public recibeProfesional(e)  {
+  public recieveProfesional(e)  {
     this.profesional = e;
+    console.table(this.profesional);
   }
+  public recieveDay(date: Date) {
+    this.date = date;
+    this.dateFormated = date.getUTCDate().toString() + '/' + (date.getUTCMonth() + 1).toString() + '/' + date.getUTCFullYear().toString();
+    console.log(this.date);
+  }
+  public recieveHour(h: string)  {
+    this.hour = h;
+    console.log(this.hour);
+  }
+
+  // public getUser(usr: User) {
+  //   this.profesional = usr;
+  // }
+
+  public translateDay(day: Date): string {
+
+    let dayOfTheWeek: string;
+
+    switch (day.getDay()) {
+      case 0: dayOfTheWeek = 'Domingo'; break;
+      case 1: dayOfTheWeek = 'Lunes'; break;
+      case 2: dayOfTheWeek = 'Martes'; break;
+      case 3: dayOfTheWeek = 'Miércoles'; break;
+      case 4: dayOfTheWeek = 'Jueves'; break;
+      case 5: dayOfTheWeek = 'Viernes'; break;
+      case 6: dayOfTheWeek = 'Sábado'; break;
+    }
+
+    return dayOfTheWeek;
+
+  }
+
 }

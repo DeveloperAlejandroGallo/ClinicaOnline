@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
   public register() {
-    console.log('Click on registry');
+    // console.log('Click on registry');
     this.router.navigate(['/registry']);
   }
 
@@ -56,8 +56,8 @@ export class LoginComponent implements OnInit {
     // this.email = (document.getElementById('txtUsuario') as HTMLInputElement).value;
     // this.pass = (document.getElementById('txtpass') as HTMLInputElement).value;
 
-    console.log(this.email);
-    console.log(this.pass);
+    // console.log(this.email);
+    // console.log(this.pass);
 
     if (this.pass !== '' && this.pass !== undefined) {
       this.authService

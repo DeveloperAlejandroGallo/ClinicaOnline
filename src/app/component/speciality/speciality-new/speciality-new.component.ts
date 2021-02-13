@@ -1,49 +1,37 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { title } from 'process';
 import { Speciality } from 'src/app/class/speciality';
 import { FireStoreService } from 'src/app/service/fire-store.service';
 import { SpecialityService } from 'src/app/service/speciality.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-speciality-list',
-  templateUrl: './speciality-list.component.html',
-  styleUrls: ['./speciality-list.component.scss']
+  selector: 'app-speciality-new',
+  templateUrl: './speciality-new.component.html',
+  styleUrls: ['./speciality-new.component.scss']
 })
-export class SpecialityListComponent implements OnInit {
+export class SpecialityNewComponent implements OnInit {
 
-  @Output() specialityOutput: EventEmitter<Speciality> = new EventEmitter<Speciality>();
+  @Output() specialityCratedOut: EventEmitter<Speciality> = new EventEmitter<Speciality>();
 
-  public specialitiesList: Array<Speciality>;
   public image: string;
-
-
+  
   constructor(private specialityService: SpecialityService,
-              private fireStorage: FireStoreService) {}
+    private fireStorage: FireStoreService) { }
+
+  ngOnInit(): void {
+  }
+
   newSpeciality: Speciality;
   name: string;
   publicURL: string;
 
-  ngOnInit(): void {
-    console.info("Iniciando lista de especialidades");
-    this.fillSpecialities();
-  }
 
-  fillSpecialities() {
-    this.specialityService.getSpecialities().subscribe(resp => {
-
-      this.specialitiesList = resp;
-      console.log(this.specialitiesList);
-    });
-  }
-
-
-  selectSpeciality(spec) {
-    this.specialityOutput.emit(spec);
+  selectSpeciality(spec: Speciality) {
+    this.specialityCratedOut.emit(spec);
   }
 
   createSpeciality() {
-    console.log('Ingreso a Save');
+    // console.log('Ingreso a Save');
     if (this.name == ('' || undefined)) {
       Swal.fire({
         title: 'Error',
@@ -79,6 +67,7 @@ export class SpecialityListComponent implements OnInit {
         this.newSpeciality = new Speciality(this.name, this.publicURL);
         this.specialityService.createSpeciality(this.newSpeciality).subscribe((res: any)=>
         {
+          this.selectSpeciality(this.newSpeciality);
           Swal.fire({
             // position: 'top-end',
             icon: 'success',
@@ -86,19 +75,19 @@ export class SpecialityListComponent implements OnInit {
             text: 'Creada correctamente.',
             showConfirmButton: false,
             timer: 1500
-          })
-          this.fillSpecialities();
-          this.specialityOutput.emit(this.newSpeciality);
-          this.newSpeciality.name = '';
+          });
+          // this.fillSpecialities();
+          this.name = '';
           this.image = '';
         });
 
       });
-    }).catch(err => console.log(err));
+    }).catch(err => console.error('Error al subir imagen: '+err));
   }
 
 
   imgUpload(img) {
     this.image = img;
   }
+
 }

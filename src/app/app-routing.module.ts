@@ -23,6 +23,8 @@ const routes: Routes = [
   { path: 'patient', component: PatientMenuComponent },
   { path: 'admin', component: AdminMenuComponent },
   { path: 'admin/approve', component: ApproveProfesionalComponent },
+  { path: 'profesional/attend', component: ProfesionalAppointmentComponent },
+  // { path: 'profesional/calendario', component: Profe },
   { path: 'error', component: ErrorComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'error' },
 ];

@@ -20,9 +20,9 @@ export class ProfesionalListComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log('specialityInput: '+ this.specialityInput);
+    // console.log('specialityInput: '+ this.specialityInput);
     this.userService.getUsersByProfile('Profesional').subscribe(res => {
-      console.log(res);
+      // console.log(res);
       this.profesionalList = res;
       this.profesionalListOutput.emit(this.profesionalList);
     });

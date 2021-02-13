@@ -1,4 +1,5 @@
 import { Speciality } from "./speciality";
+import { SpecialityDays } from './speciality-days';
 
 
 export class User {
@@ -10,14 +11,15 @@ export class User {
     image2: string;
     profile: string; // Profesional - Paciente - Administrador
     isActive: boolean;
-    specialitiesDays: Array<{ spec: Speciality, 
-                              sunday: boolean, 
-                              monday: boolean, 
-                              tuesday: boolean, 
-                              wednesday: boolean, 
-                              thursday: boolean, 
-                              friday: boolean, 
-                              saturday: boolean }>;
+    // specialitiesDays: Array<{ spec: Speciality, 
+    //                           sunday: boolean, 
+    //                           monday: boolean, 
+    //                           tuesday: boolean, 
+    //                           wednesday: boolean, 
+    //                           thursday: boolean, 
+    //                           friday: boolean, 
+    //                           saturday: boolean }>;
+    specialitiesDays: Array<SpecialityDays>;
     daysAttending?: string[];
     mdLicence?: string;
     approved?: boolean;
@@ -32,7 +34,7 @@ export class User {
         profile: string, // Profesional - Paciente - Administrador
         isActive: boolean,
         image2?: string,
-        specialitiesDays?: Array<{ spec: Speciality, sunday: boolean, monday: boolean, tuesday: boolean, wednesday: boolean, thursday: boolean, friday: boolean, saturday: boolean }>,
+        specialitiesDays?: Array<SpecialityDays>,
         daysAttending?: string[],
         mdLicence?: string,
         approved?: boolean,

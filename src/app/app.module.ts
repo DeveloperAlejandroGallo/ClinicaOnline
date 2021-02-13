@@ -25,7 +25,7 @@ import { AppointmentComponent } from './component/patient/appointment/appointmen
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ProfesionalListComponent } from './component/profesional/profesional-list/profesional-list.component';
 // import { AppointmentListComponent } from './component/profesional/appointment-list/appointment-list.component';
-import { SpecialityListComponent } from './component/speciality-list/speciality-list.component';
+import { SpecialityListComponent } from './component/speciality/speciality-list/speciality-list.component';
 import { PatientAppointmentListComponent } from './component/patient/patient-appointment-list/patient-appointment-list.component';
 import { ProfesionalAppointmentListComponent } from './component/profesional/profesional-appointment-list/profesional-appointment-list.component';
 import { ProfesionalAppointmentComponent } from './component/profesional/profesional-appointment/profesional-appointment.component';
@@ -42,6 +42,11 @@ import { FilterAppointmentPipe } from './pipes/filter-appointment.pipe';
 import { FilterProfStatePipe } from './pipes/filter-prof-state.pipe';
 import { FilterUserPipe } from "./pipes/filter-user.pipe";
 import { UserListComponent } from "./component/user/user-list/user-list.component";
+import { DatePipe } from '@angular/common';
+import { HoursComponent } from './component/hours/hours.component';
+import { SpecialityNewComponent } from './component/speciality/speciality-new/speciality-new.component';
+import { SpecialityMenuComponent } from './component/speciality/speciality-menu/speciality-menu.component';
+import { ProfesionalAgendaComponent } from './component/profesional/profesional-agenda/profesional-agenda.component'
 
 @NgModule({
   declarations: [
@@ -73,7 +78,11 @@ import { UserListComponent } from "./component/user/user-list/user-list.componen
     FilterAppointmentPipe,
     FilterProfStatePipe,
     FilterUserPipe,
-    UserListComponent
+    UserListComponent,
+    HoursComponent,
+    SpecialityNewComponent,
+    SpecialityMenuComponent,
+    ProfesionalAgendaComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +96,7 @@ import { UserListComponent } from "./component/user/user-list/user-list.componen
     HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [FireAuthService, FireStoreService],
+  providers: [FireAuthService, FireStoreService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

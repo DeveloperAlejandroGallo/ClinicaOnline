@@ -78,4 +78,8 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/admin/approve']);
   }
 
+  public attend() {
+    this.router.navigate(['/profesional/attend']);
+  }
+
 }

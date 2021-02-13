@@ -1,0 +1,23 @@
+<div class="card">
+    <div class="card text-center">
+        <div class="card-header">
+            <h5>Horarios Disponibles</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-sm table-bordered">
+                <thead>
+                    <tr>
+                        <th>Hora</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let h of hourList">
+                        <td>{{h}}</td>
+                        <td><button type="button" class="button btn-info" name="" id="" (click)="selectHour(h)">Elegir</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

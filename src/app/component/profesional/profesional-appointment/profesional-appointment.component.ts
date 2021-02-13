@@ -16,12 +16,12 @@ import { StringDecoder } from 'string_decoder';
 export class ProfesionalAppointmentComponent implements OnInit {
 
   constructor(private fireAuth: FireAuthService,
-              private userService: UserService,
-              private appointmentService: AppointmentService) { }
+    private userService: UserService,
+    private appointmentService: AppointmentService) { }
 
   activeUser;
-  email:string;
-  profile:string;
+  email: string;
+  profile: string;
   adminActive: boolean;
   name: string;
   speciality: Speciality;
@@ -31,44 +31,50 @@ export class ProfesionalAppointmentComponent implements OnInit {
   minSelected: string;
   appointmentDate: Date;
   appointment: Appointment;
-  
+
 
   ngOnInit(): void {
-    this.fireAuth.currentUser().then(resp => {
 
-      this.activeUser =resp;
-
-      this.userService.getUsersByEmail(this.activeUser.email).subscribe(res => {
-        if (res.profile == "Administrador")
-          this.adminActive = true;
-        this.profesional = res;
-
-      });
-    }).catch(err => { console.log('Error al obtener current user en patient-menu: ' + err) });
   }
 
   save() {
     // this.appointment = new Appointment(this.activeUser, this.activeUser.speciality,this.appointmentDate, this.hourSelected,
     //   this.minSelected, this.getDayofTheWeek(),true,);
 
-      // this.appointmentService.createAppointment(this.appointment).subscribe((res: any) => );
+    // this.appointmentService.createAppointment(this.appointment).subscribe((res: any) => );
   }
 
-    public getDayofTheWeek(): string {
-      
-      let weekDay: string;
-      switch(this.appointmentDate.getDay())
-      {
-        case 0: weekDay = 'Domingo'; break;
-        case 1: weekDay = 'Lunes'; break;
-        case 2: weekDay = 'Martes'; break;
-        case 3: weekDay = 'Miércoles'; break;
-        case 4: weekDay = 'Jueves'; break;
-        case 5: weekDay = 'Viernes'; break;
-        case 6: weekDay = 'Sábado'; break;
-      }
-      return weekDay;
-    }
+  public appointmentSelected() {
+    return this.appointment != (null && undefined)
+  }
 
+  public reject() {
+
+  }
+
+
+
+  public getDayofTheWeek(): string {
+
+    let weekDay: string;
+    switch (this.appointmentDate.getDay()) {
+      case 0: weekDay = 'Domingo'; break;
+      case 1: weekDay = 'Lunes'; break;
+      case 2: weekDay = 'Martes'; break;
+      case 3: weekDay = 'Miércoles'; break;
+      case 4: weekDay = 'Jueves'; break;
+      case 5: weekDay = 'Viernes'; break;
+      case 6: weekDay = 'Sábado'; break;
+    }
+    return weekDay;
+  }
+
+  public recieveUser(usr: User) {
+    this.profesional = usr;
+  }
+
+  public recieveAppointment(ap: Appointment) {
+    this.appointment = ap;
+  }
 
 }

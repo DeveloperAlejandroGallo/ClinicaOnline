@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { slideInAnimation } from './animations';
+import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,8 @@ import { slideInAnimation } from './animations';
   styleUrls: ['./app.component.scss'],
   animations: [
     slideInAnimation
-  ]
+  ],
+  providers:[DatePipe]
 })
 export class AppComponent {
   title = 'ClinicaOnline';

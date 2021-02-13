@@ -1,3 +1,4 @@
+<app-nav-bar (usrActivoOutput)="recieveUser($event)" ></app-nav-bar>
 <div class="card">
     <div class="row no-gutters">
         <div class="col-md-4">
@@ -6,59 +7,13 @@
         <div class="col-md-8">
             <div class="card text-center">
                 <div class="card-body">
-                    <div class="card-header text-white bg-info">Turnos</div>
-                    <!-- <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <label class="input-group-text" for="specialitySelect">Especialidad</label>
-                        </div>
-                        <select class="custom-select" id="specialitySelect" [(ngModel)]="especialitySelected">
-                          <option value="" selected disabled hidden >Seleccione una Especialidad</option>
-                          <option *ngFor="let spec of specialityList" value="{{spec.name}}">{{spec.name}}</option>
-                        </select>
+                    <div class="card-header text-white bg-info">Atencion</div>
+                    <div *ngIf="!appointmentSelected()">
+                      <app-appointment-list [filterInput]="filter" (appointmentOutput)="recieveAppointment()"></app-appointment-list>
                     </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <label class="input-group-text" for="profesionalSelect">Profesional</label>
-                        </div>
-                        <select class="custom-select" id="profesionalSelect" [(ngModel)]="profesionalSelected" placeholder="Seleccione un Profesional">
-                          <option value="" selected disabled hidden >Seleccione un Profesional</option>
-                          <option *ngFor="let prof of profesionaList" value="{{prof.name}}">{{prof.name}}</option>
-                        </select>
-                    </div>                     -->
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Fecha</span>
-                        </div>
-                        <input class="form-control" type="date" placeholder="Ingrese una fecha de turno.." [(ngModel)]="appointmentDate" name="fechaDeNacimiento">
+                    <div *ngIf="appointmentSelected()">
+                      <app-appointment-detail [appointmenteInput]="appointment"></app-appointment-detail>
                     </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <label class="input-group-text" for="selectHora">Hora</label>
-                        </div>
-                        <select class="custom-select" id="selectHora" [(ngModel)]="hourSelected">
-                          <option selected value="08">08</option>
-                          <option value="09">09</option>
-                          <option value="10">10</option>
-                          <option value="11">11</option>
-                          <option value="12">12</option>
-                          <option value="13">13</option>
-                          <option value="14">14</option>
-                          <option value="15">15</option>
-                          <option value="16">16</option>
-                          <option value="17">17</option>
-                          <option value="18">18</option>
-                          <option value="19">19</option>
-                        </select>
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="selectMin">Minutos</label>
-                          </div>
-                        <select class="custom-select" id="selectMin" [(ngModel)]="minSelected">
-                            <option selected value="00">00</option>
-                            <option selected value="30">30</option>
-                        </select>
-                    </div>
-                    <button type="button" class="btn btn-info" (click)="save()" shape="round" size="medium">Crear Turno</button>
-                    <div><label>{{msg}}</label></div>
                 </div>
             </div>
         </div>

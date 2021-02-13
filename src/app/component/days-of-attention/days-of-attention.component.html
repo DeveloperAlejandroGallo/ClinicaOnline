@@ -1,1 +1,25 @@
-<p>days-of-attention works!</p>
+<div class="card">
+    <div class="card text-center">
+        <div class="card-header">
+            <h5>Fechas Disponibles</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-sm table-bordered">
+                <thead>
+                    <tr>
+                        <th>Día de la Semana</th>
+                        <th>Fecha</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let day of dayList">
+                        <td>{{translateDay(day)}}</td>
+                        <td>{{day | date:"dd/MM/yyyy"}}</td>
+                        <td><button type="button" class="button btn-info" name="" id="" (click)="selectDay(day)">Elegir</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

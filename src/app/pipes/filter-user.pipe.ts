@@ -11,8 +11,8 @@ export class FilterUserPipe implements PipeTransform {
     let usersList = Array<User>();
     let state: boolean;
     let filterType = args[0];
-    console.log('En el PIPE');
-    console.table(users);
+    // console.log('En el PIPE');
+    // console.table(users);
 
     if (users.length > 0) {
       switch (filterType) {
@@ -29,7 +29,7 @@ export class FilterUserPipe implements PipeTransform {
           break;
         case 'speciality':
           let specialityName = args[1]
-          usersList = users.filter(u => u.specialitiesDays.some(s => s.spec.name == specialityName));
+          usersList = users.filter(u => u.approved == true && u.profile == 'Profesional').filter(u => u.specialitiesDays.some(s => s.spec.name == specialityName));
           break;
       }
     }
